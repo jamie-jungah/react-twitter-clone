@@ -71,10 +71,9 @@ export default function SignupForm() {
     }
   };
 
-  const onClickSocialLogin = async (e: any) => {
-    const {
-      target: { name },
-    } = e;
+  const onClickSocialLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    const target = e.target as HTMLButtonElement; // 타입 단언 추가
+    const { name } = target;
 
     let provider;
     const auth = getAuth(app);
