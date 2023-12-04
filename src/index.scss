@@ -154,6 +154,46 @@ body {
 }
 
 .post-form {
+  &__profile {
+    padding: 16px;
+
+    .post-form__input {
+      border-bottom: 1px solid $gray;
+      padding: 8px 2px;
+      font-size: 16px;
+      width: 100%;
+      margin-bottom: 20px;
+
+      &:active,
+      &:focus {
+        border-bottom: 1px solid white;
+      }
+    }
+  }
+
+  &__image-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__attachment {
+    display: flex;
+    align-items: end;
+    gap: 16px;
+  }
+
+  &__clear-btn {
+    @extend .button;
+    padding: 0.2rem 0.8rem;
+    background-color: $danger;
+
+    &:hover,
+    &:focus {
+      background-color: $activeDanger;
+    }
+  }
+
   &__input {
     font-family: $font;
     padding: 8px;
@@ -216,6 +256,7 @@ body {
     padding: 0.75rem 1rem;
     justify-content: space-between;
     border-bottom: 1px solid $border;
+    align-items: center;
 
     .post-form__file {
       display: flex;
@@ -239,6 +280,10 @@ body {
 
 // Post Layout
 .post {
+  &__image-div {
+    padding: 16px;
+  }
+
   &__header {
     button {
       border: none;
@@ -445,5 +490,48 @@ body {
       background-color: $activeBackground;
       color: $white;
     }
+  }
+}
+
+// Profile Layout
+.profile {
+  display: flex;
+  padding: 0 1rem;
+  margin-top: 2.5rem;
+  justify-content: space-between;
+  align-items: center;
+
+  &__image {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+  }
+
+  &__btn {
+    @extend .button;
+    background-color: $primaryColor;
+
+    &:hover,
+    &:focus {
+      background-color: $activeColor;
+    }
+  }
+
+  &__text {
+    padding: 0 1rem;
+    margin-top: 20px;
+  }
+
+  &__name {
+    font-size: 14px;
+    color: $white;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  &__email {
+    font-size: 14px;
+    color: $grayText;
+    margin-bottom: 4px;
   }
 }
