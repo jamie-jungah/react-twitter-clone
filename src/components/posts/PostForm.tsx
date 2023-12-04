@@ -16,22 +16,25 @@ export default function PostForm() {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const { user } = useContext(AuthContext);
 
-  const handleFileUpload = (e: any) => {
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { files },
     } = e;
 
     const file = files?.[0];
-    const fileReader = new FileReader();
-    fileReader?.readAsDataURL(file);
 
-    fileReader.onloadend = (e: any) => {
-      const { result } = e?.currentTarget;
-      setImageFile(result);
-    };
+    if (file) {
+      const fileReader = new FileReader();
+      fileReader?.readAsDataURL(file);
+
+      fileReader.onloadend = (e: ProgressEvent<FileReader>) => {
+        const { result } = e.currentTarget as FileReader;
+        setImageFile(result as string);
+      };
+    }
   };
 
-  const onSubmit = async (e: any) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(true);
     const key = `${user?.uid}/${uuidv4()}`;
     const storageRef = ref(storage, key);
