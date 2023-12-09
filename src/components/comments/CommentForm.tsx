@@ -7,6 +7,7 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { db } from 'firebaseApp';
+import useTranslation from 'hooks/useTranslation';
 import { PostProps } from 'pages/home';
 import { useContext, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -18,6 +19,7 @@ export interface CommentFormProps {
 export default function CommentForm({ post }: CommentFormProps) {
   const [comment, setComment] = useState<string>('');
   const { user } = useContext(AuthContext);
+  const translation = useTranslation();
 
   const truncate = (str: string) => {
     return str?.length > 10 ? str?.substring(0, 10) + '...' : str;
@@ -55,7 +57,9 @@ export default function CommentForm({ post }: CommentFormProps) {
             uid: post?.uid,
             isRead: false,
             url: `/posts/${post?.id}`,
-            content: `${truncate(post?.content)} 글에 댓글이 작성되었습니다.`,
+            content: `${truncate(post?.content)} ${translation(
+              'COMMENT_NOTIFICATIONS'
+            )}`,
           });
         }
 
@@ -84,7 +88,7 @@ export default function CommentForm({ post }: CommentFormProps) {
         name='comment'
         id='comment'
         required
-        placeholder='What is happening?'
+        placeholder={translation('COMMENT_PLACEHOLDER')}
         onChange={onChange}
         value={comment}
       />
@@ -92,7 +96,7 @@ export default function CommentForm({ post }: CommentFormProps) {
         <div />
         <input
           type='submit'
-          value='Comment'
+          value={translation('BUTTON_COMMENT')}
           className='post-form__submit-btn'
           disabled={!comment}
         />
