@@ -540,6 +540,11 @@ body {
   justify-content: space-between;
   align-items: center;
 
+  &__flex {
+    display: flex;
+    gap: 8px;
+  }
+
   &__image {
     border-radius: 50%;
     width: 100px;
@@ -553,6 +558,16 @@ body {
     &:hover,
     &:focus {
       background-color: $activeColor;
+    }
+
+    &--language {
+      @extend .button;
+      background-color: $gray;
+
+      &:hover,
+      &:focus {
+        background-color: $activeGray;
+      }
     }
   }
 

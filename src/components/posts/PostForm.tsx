@@ -7,6 +7,7 @@ import AuthContext from 'context/AuthContext';
 
 import { v4 as uuidv4 } from 'uuid';
 import { getDownloadURL, ref, uploadString } from 'firebase/storage';
+import useTranslation from 'hooks/useTranslation';
 
 export default function PostForm() {
   const [content, setContent] = useState<string>('');
@@ -15,6 +16,7 @@ export default function PostForm() {
   const [imageFile, setImageFile] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const { user } = useContext(AuthContext);
+  const translation = useTranslation();
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
@@ -115,7 +117,7 @@ export default function PostForm() {
         required
         name='content'
         id='content'
-        placeholder='What is happening?'
+        placeholder={translation('POST_PLACEHOLDER')}
         onChange={onChange}
         value={content}
       />
@@ -135,7 +137,7 @@ export default function PostForm() {
           className='post-form__input'
           name='hashtag'
           id='hashtag'
-          placeholder='해시태그 + 스페이스 바 입력'
+          placeholder={translation('POST_HASHTAG')}
           onChange={onChangeHashtag}
           onKeyUp={handleKeyUp}
           value={hashtag}
@@ -162,14 +164,14 @@ export default function PostForm() {
                 type='button'
                 onClick={handleDeleteImage}
               >
-                clear
+                {translation('BUTTON_DELETE')}
               </button>
             </div>
           )}
         </div>
         <input
           type='submit'
-          value='Tweet'
+          value={translation('BUTTON_TWEET')}
           className='post-form__submit-btn'
           disabled={isSubmitting}
         />

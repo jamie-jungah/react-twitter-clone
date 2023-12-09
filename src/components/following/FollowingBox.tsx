@@ -10,6 +10,7 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { db } from 'firebaseApp';
+import useTranslation from 'hooks/useTranslation';
 import { PostProps } from 'pages/home';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -25,6 +26,7 @@ interface UserProps {
 export default function FollowingBox({ post }: FollowingProps) {
   const { user } = useContext(AuthContext);
   const [postFollowers, setPostFollowers] = useState<any>([]);
+  const translation = useTranslation();
 
   const onClickFollow = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -57,7 +59,9 @@ export default function FollowingBox({ post }: FollowingProps) {
           minute: '2-digit',
           second: '2-digit',
         }),
-        content: `${user?.email || user?.displayName}가 팔로우를 했습니다.`,
+        content: `${user?.email || user?.displayName} ${translation(
+          'FOLLOW_NOTIFICATIONS'
+        )}`,
         url: '#',
         isRead: false,
         uid: post?.uid,
@@ -121,7 +125,7 @@ export default function FollowingBox({ post }: FollowingProps) {
             className='post__following-btn'
             onClick={onClickDeleteFollow}
           >
-            Following
+            {translation('BUTTON_FOLLOWING')}
           </button>
         ) : (
           <button
@@ -129,7 +133,7 @@ export default function FollowingBox({ post }: FollowingProps) {
             className='post__follow-btn'
             onClick={onClickFollow}
           >
-            Follower
+            {translation('BUTTON_FOLLOW')}
           </button>
         ))}
     </>
