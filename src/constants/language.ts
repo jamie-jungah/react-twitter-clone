@@ -95,7 +95,7 @@ const TRANSLATIONS = {
     en: 'Likes',
   },
   TAB_MY: {
-    ko: '내가쓴 글',
+    ko: '내가 쓴 글',
     en: 'My Tweets',
   },
 

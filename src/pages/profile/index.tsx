@@ -103,7 +103,7 @@ export default function ProfilePage() {
             className={`home__tab ${activeTab === 'my' && 'home__tab--active'}`}
             onClick={() => setActiveTab('my')}
           >
-            {translation('TAB_ALL')}
+            {translation('TAB_MY')}
           </div>
           <div
             className={`home__tab ${
