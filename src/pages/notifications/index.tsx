@@ -54,7 +54,9 @@ export default function NotificationsPage() {
       </div>
       <div className='post'>
         {notifications?.length > 0 ? (
-          notifications?.map((noti) => <NotificationBox notification={noti} />)
+          notifications?.map((noti) => (
+            <NotificationBox key={noti.id} notification={noti} />
+          ))
         ) : (
           <div className='post__no-posts'>
             <div className='post__text'>{translation('NO_NOTIFICATIONS')}</div>

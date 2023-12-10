@@ -21,24 +21,30 @@ export default function MenuList() {
       <div className='footer__grid'>
         <button type='button' onClick={() => navigate('/')}>
           <BsHouse />
-          {translation('MENU_HOME')}
+          <span className='footer__grid--text'>{translation('MENU_HOME')}</span>
         </button>
         <button type='button' onClick={() => navigate('/profile')}>
           <BiUserCircle />
-          {translation('MENU_PROFILE')}
+          <span className='footer__grid--text'>
+            {translation('MENU_PROFILE')}
+          </span>
         </button>
         <button type='button' onClick={() => navigate('/search')}>
           <AiOutlineSearch />
-          {translation('MENU_SEARCH')}
+          <span className='footer__grid--text'>
+            {translation('MENU_SEARCH')}
+          </span>
         </button>
         <button type='button' onClick={() => navigate('/notifications')}>
           <IoMdNotificationsOutline />
-          {translation('MENU_NOTI')}
+          <span className='footer__grid--text'>{translation('MENU_NOTI')}</span>
         </button>
         {user === null ? (
           <button type='button' onClick={() => navigate('/users/login')}>
             <MdLogin />
-            {translation('MENU_LOGIN')}
+            <span className='footer__grid--text'>
+              {translation('MENU_LOGIN')}
+            </span>
           </button>
         ) : (
           <button
@@ -50,7 +56,9 @@ export default function MenuList() {
             }}
           >
             <MdLogout />
-            {translation('MENU_LOGOUT')}
+            <span className='footer__grid--text'>
+              {translation('MENU_LOGOUT')}
+            </span>
           </button>
         )}
       </div>
